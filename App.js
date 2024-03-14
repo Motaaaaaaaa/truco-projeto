@@ -14,15 +14,18 @@ export default function App() {
   function checkForWinner(score, team){
     if(score > 11){
       setWinner(team);
-      Alert.alert(winner);
     }
   }
   return (
     <View style={styles.container}>
-      <Modal visible={false} transparent={true} animationType="slide">
+      <Modal visible={winner !== null} transparent={true} animationType="slide">
         <View style={styles.modalView}>
-          <Text style={styles.congratsText}>Parabéns, ganhou!</Text>
-          <TouchableOpacity style={styles.closeButton} onPress={() => {}}>
+          <Text style={styles.congratsText}>Parabéns, {winner} ganhou!</Text>
+          <TouchableOpacity style={styles.closeButton} onPress={() => {
+            setWinner(null);
+            setTime1(0);
+            setTime2(0);
+          }}>
             <Text style={styles.closeButtonText}>Fechar</Text>
           </TouchableOpacity>
         </View>
